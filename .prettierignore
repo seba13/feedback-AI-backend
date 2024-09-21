@@ -1,0 +1,5 @@
+*.log
+package-lock-json
+dist/
+.env
+.env.template
