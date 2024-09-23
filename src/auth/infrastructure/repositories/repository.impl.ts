@@ -13,6 +13,13 @@ export class AuthRepositoryImpl implements AuthRepository {
   //   return await this.datasource.login(dto);
   // }
 
+  /***
+   *  TODO:     A CONSIDERAR
+   *  INYECTAR DATASOURCE DE LA CAPA USER
+   *
+   *  O UTILIZAR REPOSITORIO DE USER (GETUSERBYEMAIL, REGISTER)
+   *
+   */
   public async getUserByEmail(email: string): Promise<UserEntity | null> {
     return await this.datasource.getUserByEmail(email);
   }

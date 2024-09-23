@@ -6,3 +6,7 @@ todo.md
 db/
 
 docker-compose.yml
+
+ejemplo-google-authentication-apis.ts
+ejemplo-google-authentication-library.ts
+ejemplo-google-authentication-passport.ts

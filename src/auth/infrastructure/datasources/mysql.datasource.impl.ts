@@ -7,7 +7,7 @@ import { AuthDatasource, RegisterUserDto } from "../../domain";
 // import { AuthEntity } from "../../domain/entities/";
 
 import { v4 } from "uuid";
-const users: UserEntity[] = [
+export const users: UserEntity[] = [
   {
     idUser: v4(),
     password: "123456",

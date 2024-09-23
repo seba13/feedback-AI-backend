@@ -1,6 +1,5 @@
 import { ErrorHandler } from "../../../core/";
 import { RegisterUserDto, AuthEntity, AuthRepository } from "../";
-import { JwtAdapter } from "../../infrastructure/adapters/jwt.adapter";
 import { BCryptAdapter } from "../../infrastructure/adapters/bcrypt.adapter";
 
 // import { RegisterUserDto } from "../dtos/";
@@ -27,8 +26,6 @@ export class RegisterUser implements RegisterUseCase {
       password: await BCryptAdapter.hash(data.password),
     } as RegisterUserDto);
 
-    const token = await JwtAdapter.generateToken(userEntity.idUser);
-
-    return AuthEntity.create(userEntity!, token);
+    return AuthEntity.create(userEntity!);
   }
 }

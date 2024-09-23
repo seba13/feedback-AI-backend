@@ -3,6 +3,10 @@ import compression from "compression";
 import { HttpCode } from "../constants";
 import { errorMiddleware } from "../../common/presentation/middlewares";
 
+import cors from "cors";
+
+import cookieParser from "cookie-parser";
+
 import figlet from "figlet";
 
 export interface ServerOptions {
@@ -27,10 +31,18 @@ export class Server {
 
   async start(): Promise<void> {
     // middlewares
+    this.app.use(
+      cors({
+        origin: "http://localhost:5173",
+        credentials: true,
+      }),
+    );
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
 
     this.app.use(compression({ threshold: 1024 })); // Evita comprimir respuestas menores de 1KB
+
+    this.app.use(cookieParser());
 
     this.app.use(this.routes);
 

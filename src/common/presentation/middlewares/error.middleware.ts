@@ -21,8 +21,10 @@ export const errorMiddleware = (
 
     res.status(statusCode);
     res.json({
+      ok: false,
       name,
-      message,
+      errorMessage: message,
+      errorCode: statusCode,
       // stack,
       errors: validationErrors,
     });

@@ -1,7 +1,6 @@
 import { ErrorHandler } from "../../../core";
 
 import { LoginUserDto, AuthEntity, AuthRepository } from "../";
-import { JwtAdapter } from "../../infrastructure/adapters/jwt.adapter";
 import { BCryptAdapter } from "../../infrastructure/adapters/bcrypt.adapter";
 
 // import { LoginUserDto } from "../dtos";
@@ -20,14 +19,10 @@ export class LoginUser implements LoginUserUseCase {
 
     if (!userEntity) throw ErrorHandler.badRequest("user with this email not found");
 
-    console.log({ userEntity });
-
     if (!(await BCryptAdapter.compare(data.password, userEntity.password)))
       throw ErrorHandler.badRequest("password is wrong");
 
-    const token = await JwtAdapter.generateToken({ idUser: userEntity.idUser });
-
-    const authEntity = AuthEntity.create(userEntity!, token);
+    const authEntity = AuthEntity.create(userEntity!);
 
     return authEntity;
   }
