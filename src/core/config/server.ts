@@ -1,7 +1,7 @@
 import express, { type Router, type Request, type Response } from "express";
 import compression from "compression";
 import { HttpCode } from "../constants";
-import { errorMiddleware } from "../../common/presentation/middlewares";
+import { errorMiddleware } from "../../features/common/presentation/middlewares";
 
 import cors from "cors";
 
