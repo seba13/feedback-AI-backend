@@ -11,4 +11,7 @@ export const options: PoolOptions = {
   connectionLimit: 10,
   maxIdle: 10,
   waitForConnections: true,
+  charset: "utf8mb4",
 };
+
+console.log(options);
