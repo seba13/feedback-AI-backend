@@ -13,7 +13,9 @@ export const startConnection = async () => {
         `\x1b[35m
         \n****************************************\n      MySQL connection started\n****************************************\x1b[35m`,
       );
-      connection.release();
+      if (connection) {
+        connection.release();
+      }
       resolve(true);
     });
   });
