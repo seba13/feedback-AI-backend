@@ -13,5 +13,3 @@ export const options: PoolOptions = {
   waitForConnections: true,
   charset: "utf8mb4",
 };
-
-console.log(options);
