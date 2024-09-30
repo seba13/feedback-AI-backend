@@ -37,6 +37,7 @@ export class Server {
         origin: [
           // "http://localhost:5173",
           "http://192.168.0.17:5173",
+          "https://feedback-ai-backend.onrender.com",
           // "http://localhost:5005",
           // "http://192.168.0.17:5005",
         ],
