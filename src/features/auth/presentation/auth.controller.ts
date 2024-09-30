@@ -21,6 +21,8 @@ export class AuthController {
   ) {}
 
   login = async (req: Request, res: Response) => {
+    console.log("login");
+
     const userDataBody: ILoginUserDto = req.body;
 
     const dto = LoginUserDto.create(userDataBody);
@@ -34,6 +36,8 @@ export class AuthController {
       secure: envs().NODE_ENV !== "development",
       sameSite: "strict",
     });
+
+    console.log({ user });
 
     return res.json({ ok: true, ...user, token, refreshToken });
   };
