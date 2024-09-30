@@ -15,6 +15,7 @@ export class GoogleAuthService {
     });
   }
 
+  // TODO: MANEJAR ERRORES
   async getData(code: string) {
     try {
       const { tokens } = await this.oAuth2Client.getToken(code);

@@ -31,8 +31,8 @@ export class AuthController {
       maxAge: 1000 * 60 * 60 * 24,
       // path: "/",
       httpOnly: true,
-      secure: true,
-      sameSite: "none",
+      secure: envs().NODE_ENV !== "development",
+      sameSite: "strict",
     });
 
     return res.json({ ok: true, ...user, token, refreshToken });

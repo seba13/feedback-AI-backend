@@ -40,7 +40,12 @@ export class UserRoutes {
 
     // TODO: COMPLETAR CONTROLADOR DELETE USER
     // UTILIZAR MIDDLEWARES DE AUTENTICACION Y AUTORIZACION DE TOKEN
-    router.patch("/delete-user", asyncHandler(userController.deleteUser));
+    router.patch(
+      "/delete-user",
+      asyncHandler(AuthMiddleware.validateToken),
+      asyncHandler(AuthMiddleware.hasPrivileges),
+      asyncHandler(userController.deleteUser),
+    );
 
     router.post(
       "/user",

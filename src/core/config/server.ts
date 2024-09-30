@@ -3,6 +3,7 @@ import compression from "compression";
 import { HttpCode } from "../constants";
 import { errorMiddleware } from "../../features/common/presentation/middlewares";
 
+import path from "path";
 import cors from "cors";
 
 import cookieParser from "cookie-parser";
@@ -33,7 +34,12 @@ export class Server {
     // middlewares
     this.app.use(
       cors({
-        origin: "http://localhost:5173",
+        origin: [
+          // "http://localhost:5173",
+          "http://192.168.0.17:5173",
+          // "http://localhost:5005",
+          // "http://192.168.0.17:5005",
+        ],
         credentials: true,
       }),
     );
@@ -44,12 +50,18 @@ export class Server {
 
     this.app.use(cookieParser());
 
+    this.app.use(express.static("public"));
+
     this.app.use(this.routes);
 
     this.app.get("/", (_req: Request, res: Response) => {
       return res.status(HttpCode.OK).send({
         message: `Api started`,
       });
+    });
+
+    this.app.use("*", (req: Request, res: Response) => {
+      res.sendFile(path.join(__dirname, "../../public/index.html"));
     });
 
     this.app.use(errorMiddleware);
