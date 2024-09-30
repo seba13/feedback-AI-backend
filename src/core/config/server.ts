@@ -61,7 +61,7 @@ export class Server {
     });
 
     this.app.use("*", (req: Request, res: Response) => {
-      res.sendFile(path.join(__dirname, "../../public/index.html"));
+      res.sendFile(path.join(__dirname, "../../../public/index.html"));
     });
 
     this.app.use(errorMiddleware);
